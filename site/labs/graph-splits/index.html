@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A synthetic-data explainer comparing random row splits with group-disjoint graph splits. No research data or model scores."
+    />
+    <title>When text rows share a graph · Simon Xie</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#controls">Skip to split controls</a>
+    <header class="wrap">
+      <a href="../../">← Simon’s portfolio</a
+      ><span>Synthetic data lab · 01</span>
+    </header>
+    <main class="wrap">
+      <section class="intro" aria-labelledby="title">
+        <p class="eyebrow">Dataset splitting</p>
+        <h1 id="title">When text rows<br />share a graph</h1>
+        <p class="lead">
+          Different descriptions can refer to the same underlying object.
+          Splitting descriptions randomly may put that object on both sides of
+          an evaluation.
+        </p>
+        <p class="disclosure">
+          <strong>Synthetic educational example.</strong> These toy graphs and
+          descriptions are not PolyTSL data or experiment output. No model is
+          trained here, and no accuracy is reported.
+        </p>
+      </section>
+
+      <form id="split-form" class="controls" aria-labelledby="controls-title">
+        <h2 id="controls-title">Keep the data. Change the split unit.</h2>
+        <p>
+          Eight graph identities. A 75% training / 25% test split. Each graph
+          has the same number of text rows.
+        </p>
+        <fieldset id="controls" disabled>
+          <legend class="visually-hidden">
+            Synthetic dataset and split settings
+          </legend>
+          <div class="control">
+            <label for="records"
+              >Text rows per graph
+              <output id="records-value" for="records">4</output></label
+            >
+            <input
+              id="records"
+              name="records"
+              type="range"
+              min="1"
+              max="8"
+              step="1"
+              value="4"
+              aria-describedby="records-help"
+            />
+            <small id="records-help"
+              >Try 1 row first, then increase it to 4.</small
+            >
+          </div>
+          <div class="control">
+            <label for="seed">Shuffle seed</label>
+            <input
+              id="seed"
+              name="seed"
+              type="number"
+              min="0"
+              max="4294967295"
+              step="1"
+              value="17"
+              required
+              aria-describedby="seed-help"
+            />
+            <small id="seed-help"
+              >An integer; the same settings reproduce the same split.</small
+            >
+          </div>
+          <button type="submit">Apply split</button>
+        </fieldset>
+        <p id="status" class="status" role="status" aria-live="polite">
+          The interactive comparison loads when JavaScript is available.
+        </p>
+        <p id="error" role="alert" hidden></p>
+      </form>
+
+      <noscript
+        ><p class="disclosure">
+          JavaScript is disabled, so the controls are unavailable. The
+          explanation and fixed example below still show how row-level splitting
+          can share an entity across train and test.
+        </p></noscript
+      >
+
+      <div class="legend" aria-label="Assignment legend">
+        <span><b class="marker train">TR</b> Training row</span
+        ><span><b class="marker test">TE</b> Test row</span
+        ><span>One card = one graph; one marker = one text row.</span>
+      </div>
+      <section class="comparison" aria-label="Comparison of split strategies">
+        <article id="row-panel" class="panel" aria-labelledby="row-title">
+          <div class="panel-head">
+            <p class="eyebrow">Split unit: text row</p>
+            <h2 id="row-title">Random row split</h2>
+            <p>
+              Shuffle all rows, then reserve 25% for testing. A graph can appear
+              on both sides.
+            </p>
+          </div>
+          <dl class="metrics">
+            <div>
+              <dt>Train rows</dt>
+              <dd id="row-train">—</dd>
+            </div>
+            <div>
+              <dt>Test rows</dt>
+              <dd id="row-test">—</dd>
+            </div>
+            <div>
+              <dt>Overlapping graphs</dt>
+              <dd id="row-overlap">—</dd>
+            </div>
+          </dl>
+          <p id="row-detail" class="detail">
+            Graph assignments will appear here.
+          </p>
+          <div id="row-cards" class="cards"></div>
+        </article>
+        <article id="group-panel" class="panel" aria-labelledby="group-title">
+          <div class="panel-head">
+            <p class="eyebrow">Split unit: graph identity</p>
+            <h2 id="group-title">Group-disjoint split</h2>
+            <p>
+              Shuffle graph IDs first. Keep every description of one graph on
+              the same side.
+            </p>
+          </div>
+          <dl class="metrics">
+            <div>
+              <dt>Train rows</dt>
+              <dd id="group-train">—</dd>
+            </div>
+            <div>
+              <dt>Test rows</dt>
+              <dd id="group-test">—</dd>
+            </div>
+            <div>
+              <dt>Overlapping graphs</dt>
+              <dd id="group-overlap">—</dd>
+            </div>
+          </dl>
+          <p id="group-detail" class="detail">
+            Graph assignments will appear here.
+          </p>
+          <div id="group-cards" class="cards"></div>
+        </article>
+      </section>
+
+      <section class="explanation" aria-labelledby="meaning-title">
+        <h2 id="meaning-title">
+          Different rows do not necessarily mean different entities.
+        </h2>
+        <p>
+          Consider graph G01 with two descriptions. A row split can assign
+          description A to training and description B to testing. The text is
+          different, but G01 is already represented in training. A graph split
+          keeps A and B together.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <caption>
+              A fixed illustration of the same-entity problem
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Synthetic row</th>
+                <th scope="col">Underlying graph</th>
+                <th scope="col">Row split example</th>
+                <th scope="col">Group split example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Description A</th>
+                <td>G01</td>
+                <td>Train</td>
+                <td>Train</td>
+              </tr>
+              <tr>
+                <th scope="row">Description B</th>
+                <td>G01</td>
+                <td>Test</td>
+                <td>Train</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>The right split depends on the question.</strong> Row-level
+          splitting can be appropriate when the target is new descriptions of
+          known entities. To test generalization to unseen graphs, the graph
+          identity is the relevant split unit.
+        </p>
+        <p>
+          Zero overlapping graph IDs checks this split boundary only. It does
+          not establish model quality, rule out overlap in upstream pretraining,
+          or detect equivalent real graphs assigned different IDs. The toy
+          graphs here have distinct node counts; no graph-isomorphism method is
+          being evaluated.
+        </p>
+        <p>
+          The demo uses equal group sizes, so both strategies have identical row
+          counts. With uneven group sizes, reserving 25% of groups need not
+          reserve exactly 25% of rows.
+        </p>
+      </section>
+
+      <details class="dataset">
+        <summary>Inspect the generated text rows</summary>
+        <p>
+          Every row below was generated in your browser from the settings above.
+          Repeated wordings intentionally share a graph identity.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <caption id="dataset-caption">
+              Synthetic dataset
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Row ID</th>
+                <th scope="col">Graph ID</th>
+                <th scope="col">Toy description</th>
+              </tr>
+            </thead>
+            <tbody id="dataset-body"></tbody>
+          </table>
+        </div>
+      </details>
+      <footer>
+        <p>
+          Created October 2026 with AI-assisted implementation and review. This
+          is a new educational demo, separate from the PolyTSL research.
+        </p>
+        <nav aria-label="Further reading">
+          <a
+            href="https://github.com/Simonn777/Simonn777/tree/main/site/labs/graph-splits"
+            >Read the demo code ↗</a
+          ><a
+            href="https://github.com/Simonn777/Simonn777/blob/main/tests/graph-splits.test.mjs"
+            >Read the tests ↗</a
+          ><a href="../../#polytsl">PolyTSL project context</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

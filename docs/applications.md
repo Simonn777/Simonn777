@@ -40,3 +40,15 @@ PostgreSQL and Prisma.
 
 This is team contribution, not sole ownership. Team code is not redistributed
 here, and private access is not implied by this summary.
+
+## Public project notes and teaching demos
+
+- [Tufts Review project notes](https://simonn777.github.io/Simonn777/projects/tufts-review.html)
+  include the public interface and a discussion of distinct rating sources.
+- [Blue Orchard engineering notes](https://simonn777.github.io/Simonn777/projects/blue-orchard.html)
+  describe server-calculated pricing, keyed order records, and inventory
+  reservation/release mechanisms. These mechanisms are not an end-to-end
+  exactly-once processing claim.
+- [Payment Event Lab](https://simonn777.github.io/Simonn777/labs/order-events/)
+  is a separate, newly written AI-assisted teaching model. It uses synthetic
+  events and in-memory state, not private application code or customer records.

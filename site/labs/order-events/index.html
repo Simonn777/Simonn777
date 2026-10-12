@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An interactive, synthetic order-event replay lab: duplicate webhooks, out-of-order delivery, order-state guards and an idempotent fulfillment outbox."
+    />
+    <meta name="theme-color" content="#f5f3ec" />
+    <title>Order event replay · Wumou Xie</title>
+    <link rel="icon" href="../../assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#lab">Skip to replay controls</a>
+    <header class="page-header wrap">
+      <a class="home" href="../../">wx. <span>Wumou Xie / portfolio</span></a
+      ><a
+        href="https://github.com/Simonn777/Simonn777/tree/main/site/labs/order-events"
+        >Source code ↗</a
+      >
+    </header>
+    <main>
+      <section class="intro wrap" aria-labelledby="title">
+        <p class="eyebrow">Interactive engineering note / 02</p>
+        <h1 id="title">Order event replay</h1>
+        <p class="deck">
+          A webhook may arrive twice, arrive late, or arrive before the event
+          you expected. Follow what the order records—and what it allows the
+          worker to do.
+        </p>
+        <div class="disclosure">
+          <span class="dot" aria-hidden="true"></span>
+          <p>
+            New AI-assisted educational demo · synthetic orders · in-memory
+            only.<br />This is separate from Blue Orchard’s production system.
+            No real payment or shipment is made.
+          </p>
+        </div>
+      </section>
+      <section
+        id="lab"
+        class="wrap lab"
+        aria-label="Order event replay laboratory"
+      >
+        <div class="scenario-bar">
+          <div class="scenario-input">
+            <label for="scenario">01 / Choose an event sequence</label
+            ><select id="scenario"></select>
+          </div>
+          <button id="load" class="quiet-button">Load &amp; reset</button>
+        </div>
+        <p id="scenario-note" class="scenario-note"></p>
+        <div class="lab-grid">
+          <section class="inbox panel" aria-labelledby="inbox-title">
+            <div class="panel-head">
+              <h2 id="inbox-title">Incoming events</h2>
+              <span id="queue-count" class="mono">0 / 0 delivered</span>
+            </div>
+            <ol id="queue" class="event-queue"></ol>
+            <div class="controls">
+              <button id="next" class="primary">
+                Deliver next <span aria-hidden="true">→</span></button
+              ><button id="all" class="quiet-button">Deliver remaining</button>
+            </div>
+            <details class="custom">
+              <summary>Send a custom synthetic event</summary>
+              <label for="payload">Event JSON</label
+              ><textarea
+                id="payload"
+                rows="7"
+                maxlength="8000"
+                spellcheck="false"
+              >
+{
+  "id": "evt_custom_01",
+  "type": "payment.succeeded",
+  "orderId": "ord_demo_1042",
+  "amountCents": 4800,
+  "currency": "USD"
+}</textarea
+              ><button id="send" class="quiet-button">Deliver JSON</button>
+              <p>
+                Supported types: <code>checkout.completed</code>,
+                <code>payment.succeeded</code>, <code>order.cancelled</code>.
+                These are simplified event names, not a Stripe payload schema.
+              </p>
+            </details>
+          </section>
+          <section class="order panel" aria-labelledby="order-title">
+            <div class="panel-head">
+              <h2 id="order-title">Order record</h2>
+              <span class="mono">ord_demo_1042</span>
+            </div>
+            <div class="order-main">
+              <span class="eyebrow">Current state</span
+              ><strong id="order-status">created</strong
+              ><span class="order-amount"
+                >USD 48.00 <span>/ synthetic order</span></span
+              >
+            </div>
+            <ol class="state-flow" aria-label="Normal order-state path">
+              <li data-state="created">Created</li>
+              <li data-state="awaiting_payment">Awaiting payment</li>
+              <li data-state="paid">Paid</li>
+              <li data-state="fulfilled">Fulfilled</li>
+            </ol>
+            <p id="state-note" class="state-note">
+              Checkout must arrive before payment can be applied.
+            </p>
+            <div class="counters">
+              <div>
+                <strong id="deliveries">0</strong><span>Deliveries</span>
+              </div>
+              <div>
+                <strong id="duplicates">0</strong
+                ><span>Duplicates skipped</span>
+              </div>
+              <div>
+                <strong id="deferred">0</strong><span>Events waiting</span>
+              </div>
+            </div>
+            <div class="pending">
+              <span class="eyebrow">Deferred inbox</span>
+              <p id="deferred-list">No events waiting.</p>
+            </div>
+          </section>
+        </div>
+        <section class="worker panel" aria-labelledby="worker-title">
+          <div class="worker-copy">
+            <span class="eyebrow">02 / Simulated worker</span>
+            <h2 id="worker-title">Fulfillment outbox</h2>
+            <p>
+              Try losing the acknowledgement after a successful shipment. Then
+              retry. The same fulfillment key lets the receiver reuse the
+              existing side effect.
+            </p>
+            <div class="controls">
+              <button id="dispatch" class="primary">Dispatch / retry</button
+              ><button id="lose-ack" class="quiet-button">
+                Dispatch &amp; lose ACK
+              </button>
+            </div>
+          </div>
+          <div class="outbox-record">
+            <div class="outbox-heading">
+              <span class="eyebrow">Deterministic message key</span
+              ><strong id="outbox-status">Not queued</strong>
+            </div>
+            <code id="outbox-key">—</code>
+            <div class="outbox-metrics">
+              <div>
+                <strong id="attempts">0</strong><span>Worker attempts</span>
+              </div>
+              <div>
+                <strong id="shipments">0</strong
+                ><span>Synthetic shipments</span>
+              </div>
+            </div>
+            <p id="worker-note">
+              A confirmed payment queues one fulfillment message.
+            </p>
+          </div>
+        </section>
+        <p
+          id="announcement"
+          class="announcement"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Ready. Deliver the first event to begin.
+        </p>
+        <div class="record-grid">
+          <section class="journal" aria-labelledby="journal-title">
+            <div class="panel-head">
+              <h2 id="journal-title">Decision log</h2>
+              <button id="reset" class="text-button">
+                Reset this sequence
+              </button>
+            </div>
+            <ol
+              id="journal"
+              class="journal-list"
+              tabindex="0"
+              aria-label="Decision log, newest first"
+            >
+              <li class="empty">
+                No decisions yet. Every delivery and worker attempt will leave a
+                record here.
+              </li>
+            </ol>
+          </section>
+          <aside class="checks" aria-labelledby="checks-title">
+            <span class="eyebrow">Model invariants</span>
+            <h2 id="checks-title">What should stay true?</h2>
+            <ul id="checks"></ul>
+            <p>
+              These checks describe this teaching model. Passing them is not a
+              security audit or an exactly-once delivery guarantee.
+            </p>
+          </aside>
+        </div>
+      </section>
+      <section class="notes wrap" aria-labelledby="notes-title">
+        <div>
+          <p class="eyebrow">Read the boundary</p>
+          <h2 id="notes-title">Model limits</h2>
+        </div>
+        <div class="limits">
+          <p>
+            <strong>In-memory, single process.</strong> Refreshing or resetting
+            clears the event ledger, outbox and receiver. State and outbox
+            changes happen in one pure function here; production needs database
+            transactions, durable uniqueness constraints and concurrency
+            control.
+          </p>
+          <p>
+            <strong>No authenticity check.</strong> This demo does not receive
+            webhooks, verify Stripe signatures, store secrets or call a payment
+            API. It validates only a small synthetic schema, order ID, amount
+            and currency.
+          </p>
+          <p>
+            <strong>A simplified lifecycle.</strong> Payments arriving before
+            checkout are held until checkout arrives. Missing events have no
+            timeout or reconciliation job. Refunds, disputes, partial payments
+            and stock changes are outside scope.
+          </p>
+          <p>
+            <strong>Idempotent effects need receiver support.</strong> The
+            synthetic shipment receiver remembers a fulfillment key. A real
+            worker must reuse a stable key with a receiver that enforces it; an
+            outbox alone cannot prevent every duplicate external side effect.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="wrap">
+      <a href="../../">← Back to portfolio</a
+      ><span>Created October 2026 with substantial AI assistance.</span
+      ><a
+        href="https://github.com/Simonn777/Simonn777/blob/main/tests/order-events.test.mjs"
+        >Inspect the tests ↗</a
+      >
+    </footer>
+  </body>
+</html>

@@ -12,3 +12,8 @@
 - `mark.svg` is the site's typographic monogram.
 
 No font CDN, analytics script or third-party JavaScript is required at runtime.
+
+- `tufts-review.jpg` and `blue-orchard.jpg` are actual screenshots of the user's
+  public product websites, captured October 12, 2026 at 1280 × 720. They show the
+  public interface at that time, not private dashboards, customer data, or
+  independently verified adoption or revenue. They are not mockups of new work.

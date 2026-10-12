@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Testing whether a small adapter can connect text descriptions to a frozen polymer generator."
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" href="../assets/mark.svg" type="image/svg+xml" />
+    <link
+      rel="canonical"
+      href="https://simonn777.github.io/Simonn777/projects/polytsl.html"
+    />
+    <title>PolyTSL — Wumou Xie</title>
+  </head>
+  <body id="top">
+    <a class="skip" href="#notes">Skip to project notes</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="../" aria-label="Wumou Xie home">wx.</a>
+      <nav aria-label="Main navigation">
+        <a href="../#work">All projects</a
+        ><a href="../#experiments">Experiments</a
+        ><a href="https://github.com/Simonn777">GitHub ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="case-head wrap">
+        <p class="meta">Project notes / NSF-funded REU · Jun–Aug 2026</p>
+        <h1>PolyTSL</h1>
+        <p class="deck">
+          Testing whether a small adapter can connect text descriptions to a
+          frozen polymer generator.
+        </p>
+        <dl class="case-facts">
+          <div>
+            <dt>ROLE</dt>
+            <dd>Undergraduate researcher; first-author manuscript draft</dd>
+          </div>
+          <div>
+            <dt>TOOLS</dt>
+            <dd>Text+ChemT5 · MolGPT · adapter training</dd>
+          </div>
+          <div>
+            <dt>CONTEXT</dt>
+            <dd>NSF-funded REU · Jun–Aug 2026</dd>
+          </div>
+        </dl>
+      </section>
+      <div class="case-content wrap" id="notes">
+        <section class="case-section">
+          <h2>The approach</h2>
+          <div>
+            <div class="technical-flow">
+              <span>Frozen Text+ChemT5</span>→<span>593K adapter</span>→<span
+                >Frozen MolGPT</span
+              >
+            </div>
+            <p>
+              I developed a cross-attention adapter with 592,768 trainable
+              parameters between a text encoder and a polymer generator. Holding
+              the larger models fixed isolates the behavior of the learned
+              bridge.
+            </p>
+            <p>
+              The output representation is PSMILES. The research question is
+              about text conditioning, not just whether generated strings are
+              valid.
+            </p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>Evaluation design</h2>
+          <div>
+            <ul>
+              <li>
+                <strong>Dataset:</strong> 13,020 description–structure pairs
+                across 735 polymer graphs.
+              </li>
+              <li>
+                <strong>Split:</strong> group descriptions by polymer graph
+                before assigning training, validation, and test sets.
+              </li>
+              <li>
+                <strong>Controlled benchmark:</strong> 89 graph-disjoint targets
+                evaluated across five seeds.
+              </li>
+              <li>
+                <strong>Baselines:</strong> a parameter-matched pooled MLP and
+                retrieval approaches.
+              </li>
+              <li>
+                <strong>Ablations:</strong> shuffled, mismatched and neutral
+                descriptions, plus a gate-off control.
+              </li>
+            </ul>
+            <p>
+              Several descriptions can refer to the same graph. Splitting
+              descriptions independently can place the same target structure on
+              both sides of a split, which changes what the evaluation measures.
+            </p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>What I can conclude</h2>
+          <div>
+            <p>
+              The controlled results support text-sensitive conditioning
+              relative to no-text and perturbation controls. They do not
+              establish a statistically significant advantage over the pooled
+              MLP, exact repeat-unit recovery, or state-of-the-art performance.
+              Retrieval remains an important baseline.
+            </p>
+            <p>
+              That distinction matters: responding to the text is a weaker claim
+              than recovering the correct structure.
+            </p>
+            <p class="caption">
+              First-author manuscript draft, not a peer-reviewed publication.
+              Source, data, model assets, and manuscript files remain private
+              pending release review.
+            </p>
+          </div>
+        </section>
+        <aside class="experiment-callout">
+          <p class="meta">Separate public experiment / October 2026</p>
+          <h2>Try the split yourself</h2>
+          <p>
+            Adjust the number of descriptions per synthetic graph and compare
+            record-level with group-level splitting. The same seed gives a
+            reproducible example; shared graph identities are visible in the
+            train/test diagram.
+          </p>
+          <p class="caption">
+            A new AI-assisted teaching demo. All records are synthetic. It does
+            not use the research dataset or reproduce PolyTSL model results.
+          </p>
+          <a href="../labs/graph-splits/">Open graph-split experiment →</a>
+        </aside>
+        <div class="link-row">
+          <a
+            href="https://github.com/Simonn777/Simonn777/blob/main/docs/polytsl.md"
+            >Methods summary ↗</a
+          ><a
+            href="https://github.com/Simonn777/Simonn777/tree/main/site/labs/graph-splits"
+            >Demo source ↗</a
+          >
+        </div>
+      </div>
+    </main>
+    <footer class="wrap">
+      <span>Wumou (Simon) Xie</span>
+      <div>
+        <a href="../">Back to projects</a
+        ><a
+          href="https://github.com/Simonn777/Simonn777/blob/main/docs/portfolio.md"
+          >About this site</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

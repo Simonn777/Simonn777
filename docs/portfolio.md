@@ -1,35 +1,49 @@
 # Maintaining this portfolio
 
-The profile README is a short index. The static site at
-https://simonn777.github.io/Simonn777/ presents three selected projects with
-contribution context and direct links to public evidence.
+The profile README is an index. The [portfolio](https://simonn777.github.io/Simonn777/)
+contains four project overviews, three detailed project notes, and two interactive
+educational demos. VectorTile's own site hosts its separate algorithm demo.
 
-## Local preview
+## Local preview and checks
 
-From the repository root:
+From the repository root (Node.js 24+ for tests):
 
 ```sh
 python3 -m http.server 8765 --directory site
+node --test tests/*.test.mjs
+node scripts/check-links.mjs
 ```
 
-Open http://localhost:8765/. No JavaScript or build step is required. All core
-content, navigation and research disclosures work in plain HTML. Fonts are
-self-hosted; asset attribution and licenses are in `site/assets/`.
+Open http://localhost:8765/. Core pages, project notes, navigation, and disclosures
+work without JavaScript. The two labs require JavaScript for interaction and
+include static explanations. There is no build step or runtime dependency.
+Fonts are self-hosted; asset provenance and licenses are in `site/assets/`.
+
+The Node tests cover the labs' algorithm and state transitions. The link check
+validates local HTML references and fragments; it does not verify external
+services. Check desktop/mobile layout and keyboard controls in a browser when
+changing the interface.
 
 ## Publication
 
-The `Portfolio` GitHub Actions workflow deploys `site/` to GitHub Pages after a
-push to `main` that changes the site or its workflow. Only that directory is
-uploaded. The existing account-root website is a separate repository.
+The Portfolio workflow checks tests and internal links before deploying `site/`
+to GitHub Pages. Only `site/` is uploaded. The account-root website is a separate
+repository and is not managed by this project.
 
-When editing content:
+## Content and contribution boundaries
 
-- Preserve the difference between individual, team and AI-assisted work.
-- Link to raw measurements when quoting performance; include hardware and workload.
-- Keep private research source, datasets and model assets out of the public site.
-- Check desktop and mobile layout, keyboard navigation and outbound links.
-- Update the profile README if the featured projects or public entry points change.
+- The existing research and applications are described from the current resume,
+  available project evidence, and public websites. Private code/data is not included.
+- Case studies separate individual, team, and AI-assisted work. Source access
+  alone is not treated as proof of sole authorship.
+- Performance numbers link to raw measurements with hardware and workload context.
+- Graph Splits is a synthetic teaching example, not the PolyTSL dataset or model.
+- Payment Event Lab is a newly written in-memory teaching model, not the Blue
+  Orchard production implementation, a payment integration, or a reliability audit.
+- Product screenshots record public interfaces in October 2026. They do not
+  establish user counts, historical revenue, or current transaction availability.
 
-This portfolio was created with AI-assisted design, implementation and review
-in October 2026. It summarizes existing project evidence rather than establishing
-additional experience or skills by itself.
+This portfolio and its new interactive labs were created with substantial
+AI-assisted design, implementation, testing, and review in October 2026. They
+are learning and presentation artifacts; their existence does not by itself
+establish independent mastery of every implementation detail.

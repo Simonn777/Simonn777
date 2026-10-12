@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A student guide to professors, courses, housing, and everyday campus resources."
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" href="../assets/mark.svg" type="image/svg+xml" />
+    <link
+      rel="canonical"
+      href="https://simonn777.github.io/Simonn777/projects/tufts-review.html"
+    />
+    <title>Tufts Review — Wumou Xie</title>
+  </head>
+  <body id="top">
+    <a class="skip" href="#notes">Skip to project notes</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="../" aria-label="Wumou Xie home">wx.</a>
+      <nav aria-label="Main navigation">
+        <a href="../#work">All projects</a
+        ><a href="../#experiments">Experiments</a
+        ><a href="https://github.com/Simonn777">GitHub ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="case-head wrap">
+        <p class="meta">Project notes / Jan 2026–present</p>
+        <h1>Tufts Review</h1>
+        <p class="deck">
+          A student guide to professors, courses, housing, and everyday campus
+          resources.
+        </p>
+        <dl class="case-facts">
+          <div>
+            <dt>ROLE</dt>
+            <dd>Co-founder; shared development</dd>
+          </div>
+          <div>
+            <dt>TOOLS</dt>
+            <dd>React · Next.js · Supabase</dd>
+          </div>
+          <div>
+            <dt>CONTEXT</dt>
+            <dd>Jan 2026–present</dd>
+          </div>
+        </dl>
+      </section>
+      <div class="case-content wrap" id="notes">
+        <figure>
+          <a href="https://tuftsreview.org"
+            ><img
+              src="../assets/tufts-review.jpg"
+              width="1280"
+              height="720"
+              alt="The live Tufts Review homepage: campus search, categories and a campus feed."
+          /></a>
+          <figcaption>
+            Public homepage, October 2026. An independent student project,
+            unaffiliated with official Tufts systems.
+          </figcaption>
+        </figure>
+        <section class="case-section">
+          <h2>My contribution</h2>
+          <div>
+            <p>
+              I co-built the application with React, Next.js and Supabase. My
+              work included department filters, pagination, and checking
+              listings against official university sources.
+            </p>
+            <p>
+              The guide puts academic and everyday resources in one place. A
+              student can start with a department or a category, then look at
+              individual entries and their sources.
+            </p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>One design detail</h2>
+          <div>
+            <p>
+              A single star rating can hide several different meanings. The
+              application distinguishes the source of a score rather than
+              displaying every number as a Tufts Review community rating.
+            </p>
+            <table class="evidence-table">
+              <thead>
+                <tr>
+                  <th scope="col">Information available</th>
+                  <th scope="col">What the interface should communicate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Platform-wide external rating</td>
+                  <td>The named platform and its overall rating.</td>
+                </tr>
+                <tr>
+                  <td>A selected set of external reviews</td>
+                  <td>
+                    An average of that sample, distinct from the platform-wide
+                    score.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Reviews submitted to Tufts Review</td>
+                  <td>The local community rating and its own review count.</td>
+                </tr>
+                <tr>
+                  <td>No verified score</td>
+                  <td>An empty state, rather than an invented average.</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="caption">
+              This describes a choice in the shared codebase; it is not a claim
+              of sole authorship of the rating implementation.
+            </p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>Explore the product</h2>
+          <div>
+            <ol>
+              <li>Open the guide and choose Courses or Professors.</li>
+              <li>
+                Use the available search and department filters to narrow the
+                list.
+              </li>
+              <li>
+                Open an entry and check how its listing and rating sources are
+                labeled.
+              </li>
+            </ol>
+            <p><a href="https://tuftsreview.org">Visit Tufts Review ↗</a></p>
+            <p class="caption">
+              The live site is the public entry point. The project source
+              remains private; this page does not publish user reviews or
+              analytics records.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="wrap">
+      <span>Wumou (Simon) Xie</span>
+      <div>
+        <a href="../">Back to projects</a
+        ><a
+          href="https://github.com/Simonn777/Simonn777/blob/main/docs/portfolio.md"
+          >About this site</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

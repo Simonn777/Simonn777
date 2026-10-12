@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A storefront for Yunnan handmade textiles, from a persistent cart to server-side order handling."
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" href="../assets/mark.svg" type="image/svg+xml" />
+    <link
+      rel="canonical"
+      href="https://simonn777.github.io/Simonn777/projects/blue-orchard.html"
+    />
+    <title>Blue Orchard — Wumou Xie</title>
+  </head>
+  <body id="top">
+    <a class="skip" href="#notes">Skip to project notes</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="../" aria-label="Wumou Xie home">wx.</a>
+      <nav aria-label="Main navigation">
+        <a href="../#work">All projects</a
+        ><a href="../#experiments">Experiments</a
+        ><a href="https://github.com/Simonn777">GitHub ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="case-head wrap">
+        <p class="meta">Project notes / Jun 2026–present</p>
+        <h1>Blue Orchard</h1>
+        <p class="deck">
+          A storefront for Yunnan handmade textiles, from a persistent cart to
+          server-side order handling.
+        </p>
+        <dl class="case-facts">
+          <div>
+            <dt>ROLE</dt>
+            <dd>Independent developer</dd>
+          </div>
+          <div>
+            <dt>TOOLS</dt>
+            <dd>Next.js · TypeScript · Supabase · Stripe</dd>
+          </div>
+          <div>
+            <dt>CONTEXT</dt>
+            <dd>Jun 2026–present</dd>
+          </div>
+        </dl>
+      </section>
+      <div class="case-content wrap" id="notes">
+        <figure>
+          <a href="https://blue-orchard.net"
+            ><img
+              src="../assets/blue-orchard.jpg"
+              width="1280"
+              height="720"
+              alt="Blue Orchard's public storefront showing Yunnan indigo scarves and textile categories."
+          /></a>
+          <figcaption>
+            The current public storefront, October 2026. Its first-drop notice
+            is separate from the private implementation described below.
+          </figcaption>
+        </figure>
+        <section class="case-section">
+          <h2>What I built</h2>
+          <div>
+            <p>
+              I built the React/Next.js storefront with a Supabase catalog, a
+              persistent browser cart, and Stripe Checkout integration.
+            </p>
+            <p>
+              The private codebase also contains signed webhook handling, order
+              persistence, inventory reservations, cancellation paths, and
+              fulfillment records. These are implementation details; this case
+              study does not establish production reliability or transaction
+              volume.
+            </p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>Cart to order</h2>
+          <div>
+            <div
+              class="technical-flow"
+              aria-label="Cart product IDs and quantities flow to server catalog prices, then Stripe Checkout, then signed events and order records"
+            >
+              <span>Product IDs + quantity</span>→<span>Server catalog</span
+              >→<span>Checkout</span>→<span>Signed event</span>→<span
+                >Order record</span
+              >
+            </div>
+            <p>
+              The browser keeps product identifiers and quantities. The server
+              reads the catalog and calculates the payment line items, so a
+              client-supplied price is not the source of truth.
+            </p>
+            <p>
+              The webhook handler verifies the raw request signature and maps
+              payment events into order records. Checkout session identifiers
+              connect repeated deliveries to the same order.
+            </p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>Retries and stock</h2>
+          <div>
+            <p>
+              The implementation gives payment events and order records stable
+              identities. It uses keyed updates for orders and fulfillment
+              records, and PostgreSQL functions with row locks for inventory
+              reservation and release.
+            </p>
+            <p>
+              Inventory movement records make stock changes traceable. These
+              individual mechanisms are useful, but they are not a proof of
+              end-to-end exactly-once processing across payments, the database,
+              and external services.
+            </p>
+          </div>
+        </section>
+        <aside class="experiment-callout">
+          <p class="meta">Separate public experiment / October 2026</p>
+          <h2>Replay a payment event</h2>
+          <p>
+            A new educational model lets you deliver events out of order, send
+            duplicates, and retry a fulfillment worker after a simulated lost
+            acknowledgment. Watch the order state, event log, and outbox change.
+          </p>
+          <p class="caption">
+            Written from scratch with AI assistance, using synthetic data and
+            in-memory state. It does not run Blue Orchard code, connect to
+            Stripe, or verify the private system.
+          </p>
+          <a href="../labs/order-events/">Open payment event lab →</a>
+        </aside>
+        <div class="link-row">
+          <a href="https://blue-orchard.net">Public storefront ↗</a
+          ><a
+            href="https://github.com/Simonn777/Simonn777/tree/main/site/labs/order-events"
+            >Lab source ↗</a
+          >
+        </div>
+      </div>
+    </main>
+    <footer class="wrap">
+      <span>Wumou (Simon) Xie</span>
+      <div>
+        <a href="../">Back to projects</a
+        ><a
+          href="https://github.com/Simonn777/Simonn777/blob/main/docs/portfolio.md"
+          >About this site</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

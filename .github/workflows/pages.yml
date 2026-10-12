@@ -2,15 +2,28 @@ name: Portfolio
 on:
   push:
     branches: [main]
-    paths: ["site/**", ".github/workflows/pages.yml"]
+    paths: ["site/**", "tests/**", "scripts/**", ".github/workflows/pages.yml"]
+  pull_request:
+    paths: ["site/**", "tests/**", "scripts/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: node --test tests/*.test.mjs
+      - run: node scripts/check-links.mjs
   deploy:
+    if: github.event_name != 'pull_request'
+    needs: check
     runs-on: ubuntu-latest
     permissions:
       pages: write
