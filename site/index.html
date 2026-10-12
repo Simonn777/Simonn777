@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Wumou (Simon) Xie, Tufts University ’29. Selected work in machine-learning research, C++/Python systems and software for student and nonprofit communities."
+    />
+    <meta name="theme-color" content="#f5f3ec" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Wumou Xie — Research, systems & useful software"
+    />
+    <meta
+      property="og:description"
+      content="Three projects. The problem, the contribution, and the evidence. Explore PolyTSL, VectorTile and Tufts Review."
+    />
+    <meta property="og:url" content="https://simonn777.github.io/Simonn777/" />
+    <link rel="canonical" href="https://simonn777.github.io/Simonn777/" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Wumou Xie — Research, systems & useful software</title>
+  </head>
+  <body>
+    <a class="skip" href="#work">Skip to selected work</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="#top" aria-label="Wumou Xie, back to top"
+        ><span class="monogram" aria-hidden="true">wx.</span
+        ><span>Wumou <span class="quiet">(Simon)</span> Xie</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#work">Work</a><a href="#about">About</a
+        ><a href="https://github.com/Simonn777"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero wrap" aria-labelledby="intro">
+        <p class="eyebrow">
+          <span class="small-dot" aria-hidden="true"></span> Tufts University ·
+          Expected May 2029
+        </p>
+        <div class="hero-grid">
+          <div>
+            <h1 id="intro">
+              I build software.<br />Then <em>put it to the test.</em>
+            </h1>
+            <p class="intro-copy">
+              I’m Wumou, also known as Simon. I work on machine-learning
+              experiments, systems programming, and applications that help
+              people.
+            </p>
+            <div class="actions">
+              <a class="button" href="#work"
+                >Explore my work <span aria-hidden="true">↓</span></a
+              ><a
+                class="underlink"
+                href="https://www.linkedin.com/in/simon-xie-2a03343b8/"
+                >Connect on LinkedIn <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+          <aside class="field-notes" aria-label="Selected work index">
+            <p class="eyebrow">A few things I’m working on</p>
+            <a href="#vectortile"
+              ><span class="index">01</span
+              ><span
+                ><strong>VectorTile</strong
+                ><small>Algorithms → measured systems</small></span
+              ><span aria-hidden="true">↙</span></a
+            >
+            <a href="#polytsl"
+              ><span class="index">02</span
+              ><span
+                ><strong>PolyTSL</strong
+                ><small>Frozen models → controlled experiments</small></span
+              ><span aria-hidden="true">↙</span></a
+            >
+            <a href="#tufts-review"
+              ><span class="index">03</span
+              ><span
+                ><strong>Tufts Review</strong
+                ><small>Campus needs → useful software</small></span
+              ><span aria-hidden="true">↙</span></a
+            >
+            <p class="note">
+              Source code, live demos and research notes.<br />Choose a project
+              and see how it works.
+            </p>
+          </aside>
+        </div>
+      </section>
+      <section id="work" class="work wrap" aria-labelledby="work-title">
+        <div class="section-heading">
+          <h2 id="work-title">Selected work</h2>
+          <span class="eyebrow">Research · systems · applications</span>
+        </div>
+        <article id="vectortile" class="project" aria-labelledby="vector-title">
+          <div class="project-heading">
+            <span class="eyebrow">01 / Systems lab</span
+            ><span class="date">Oct 2026 · AI-assisted project</span>
+          </div>
+          <div class="project-grid">
+            <div class="project-copy">
+              <h3 id="vector-title">VectorTile</h3>
+              <p class="project-deck">
+                Every vector.<br /><em>Less distance workspace.</em>
+              </p>
+              <p>
+                How do you find the exact nearest neighbors without storing
+                every query-to-corpus distance at once?
+              </p>
+              <p>
+                This C++17/Python lab compares streaming heaps with tiled NumPy
+                search. It makes parallelism, deterministic ties and numerical
+                edge cases visible.
+              </p>
+              <div class="metric">
+                <strong>2.33 <span>ms</span></strong>
+                <div>
+                  median CPU search latency<small
+                    >64 queries · 8,192 vectors · 64D · top-10<br />Apple M5 ·
+                    four threads · synthetic data</small
+                  >
+                </div>
+              </div>
+              <div class="project-links">
+                <a class="button" href="https://simonn777.github.io/VectorTile/"
+                  >Try the live demo <span aria-hidden="true">↗</span></a
+                ><a
+                  class="underlink"
+                  href="https://github.com/Simonn777/VectorTile"
+                  >Read the code <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+            <figure class="demo-figure">
+              <a
+                href="https://simonn777.github.io/VectorTile/"
+                aria-label="Open the interactive VectorTile demo"
+                ><img
+                  src="assets/vectortile-demo.jpg"
+                  width="1049"
+                  height="901"
+                  alt="VectorTile interactive demo showing a two-dimensional vector scatterplot, search controls, retained neighbors and an oracle check."
+                  loading="lazy"
+              /></a>
+              <figcaption>
+                <span class="small-dot" aria-hidden="true"></span> Actual
+                browser demo · click to explore the algorithm
+              </figcaption>
+            </figure>
+          </div>
+          <div class="evidence-row">
+            <span class="eyebrow">Inspect the evidence</span
+            ><a
+              href="https://github.com/Simonn777/VectorTile/actions/workflows/ci.yml"
+              >Linux/macOS CI ↗</a
+            ><a href="https://github.com/Simonn777/VectorTile/tree/main/tests"
+              >Correctness tests ↗</a
+            ><a
+              href="https://github.com/Simonn777/VectorTile/blob/main/benchmarks/results/apple-m5-cpu.json"
+              >Raw measurements ↗</a
+            ><a
+              href="https://github.com/Simonn777/VectorTile/blob/main/docs/DESIGN.md"
+              >Design decisions ↗</a
+            >
+          </div>
+          <p class="scope">
+            Created with substantial AI-assisted implementation and review;
+            <a
+              href="https://github.com/Simonn777/VectorTile/blob/main/docs/DEVELOPMENT.md"
+              >development provenance</a
+            >. The browser animation explains the algorithm; timings come from
+            separate CPU runs. CUDA hardware validation is pending.
+          </p>
+        </article>
+        <article id="polytsl" class="project" aria-labelledby="poly-title">
+          <div class="project-heading">
+            <span class="eyebrow">02 / Machine-learning research</span
+            ><span class="date">Jun–Aug 2026 · NSF-funded REU</span>
+          </div>
+          <div class="project-grid">
+            <div class="project-copy">
+              <h3 id="poly-title">PolyTSL</h3>
+              <p class="project-deck">
+                A small adapter.<br /><em>A testable research question.</em>
+              </p>
+              <p>
+                Can a compact trainable bridge make a frozen polymer generator
+                respond to text?
+              </p>
+              <p>
+                I developed the adapter, curated 13,020 text–structure pairs
+                across 735 polymer graphs, and evaluated 89 graph-disjoint
+                targets across five seeds. The study includes MLP and retrieval
+                baselines, plus shuffled-text ablations.
+              </p>
+              <div class="project-links">
+                <a
+                  class="underlink"
+                  href="https://github.com/Simonn777/Simonn777/blob/main/docs/polytsl.md"
+                  >Read the methods &amp; findings
+                  <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+            <div
+              class="research-figure"
+              role="group"
+              aria-label="PolyTSL architecture: a frozen text encoder connects through a trainable adapter to a frozen polymer generator"
+            >
+              <p class="eyebrow">The trainable bridge</p>
+              <div class="architecture">
+                <div class="model-node">
+                  <span>01 / Frozen</span><strong>Text+ChemT5</strong
+                  ><small>Text representation</small>
+                </div>
+                <span class="flow-arrow" aria-hidden="true">↓</span>
+                <div class="model-node adapter">
+                  <span>02 / Trainable</span
+                  ><strong>593K-parameter<br />adapter</strong
+                  ><small>592,768 parameters</small>
+                </div>
+                <span class="flow-arrow" aria-hidden="true">↓</span>
+                <div class="model-node">
+                  <span>03 / Frozen</span><strong>MolGPT</strong
+                  ><small>Polymer generation</small>
+                </div>
+              </div>
+              <p class="figure-note">
+                Hold the large models fixed.<br />Measure what the bridge
+                learns.
+              </p>
+            </div>
+          </div>
+          <details class="finding">
+            <summary>
+              What the results support — and what they leave open
+              <span aria-hidden="true">+</span>
+            </summary>
+            <div>
+              <p>
+                The controlled experiments support text-sensitive conditioning
+                relative to no-text and perturbation controls. They do not
+                establish a significant advantage over the pooled MLP, exact
+                repeat-unit recovery, or state-of-the-art performance.
+              </p>
+              <p>
+                First-author manuscript draft. Research source, data and model
+                assets remain private pending release review; the linked page is
+                a public methods summary.
+              </p>
+            </div>
+          </details>
+        </article>
+        <article
+          id="tufts-review"
+          class="project"
+          aria-labelledby="tufts-title"
+        >
+          <div class="project-heading">
+            <span class="eyebrow">03 / Full-stack student software</span
+            ><span class="date">Jan 2026–present · Co-founder</span>
+          </div>
+          <div class="project-grid">
+            <div class="project-copy">
+              <h3 id="tufts-title">Tufts Review</h3>
+              <p class="project-deck">
+                A campus guide,<br /><em>built by students.</em>
+              </p>
+              <p>
+                Help students find university resources and share their
+                experiences in one place.
+              </p>
+              <p>
+                I co-built the React/Next.js application, implemented department
+                filters and pagination, and checked listings against official
+                university sources. Supabase supports the database and
+                authentication.
+              </p>
+              <div class="project-links">
+                <a class="button" href="https://tuftsreview.org"
+                  >Visit the campus guide <span aria-hidden="true">↗</span></a
+                ><a
+                  class="underlink"
+                  href="https://github.com/Simonn777/Simonn777/blob/main/docs/applications.md#tufts-review"
+                  >My contribution <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+            <aside
+              class="contribution-note"
+              aria-label="Tufts Review engineering contributions"
+            >
+              <p class="eyebrow">From the implementation</p>
+              <ol>
+                <li>
+                  <span>Find</span><strong>Department filters</strong>
+                  <p>Navigate resources by department.</p>
+                </li>
+                <li>
+                  <span>Browse</span><strong>Pagination</strong>
+                  <p>Explore listings in manageable pages.</p>
+                </li>
+                <li>
+                  <span>Trust</span><strong>Source verification</strong>
+                  <p>Check university details against official sources.</p>
+                </li>
+              </ol>
+              <p class="figure-note">
+                Independent student project.<br />Live application; source is
+                not public.
+              </p>
+            </aside>
+          </div>
+        </article>
+      </section>
+      <section id="about" class="about wrap" aria-labelledby="about-title">
+        <div>
+          <p class="eyebrow">Beyond the repository</p>
+          <h2 id="about-title">
+            Good software<br />starts with <em>people.</em>
+          </h2>
+          <p>
+            I’m a Tufts undergraduate exploring machine learning, the
+            software/hardware boundary, and accessible technology. I enjoy
+            questions that need both careful experiments and something people
+            can actually use.
+          </p>
+        </div>
+        <div class="experience-list">
+          <article>
+            <span class="eyebrow">Team development</span>
+            <h3>JumboCode / LexShareWare</h3>
+            <p>
+              Inventory, authentication and database work on a dishware-lending
+              app built for Lexington Zero Waste.
+            </p>
+            <a
+              href="https://github.com/Simonn777/Simonn777/blob/main/docs/applications.md#jumbocode--lexshareware"
+              >Contribution context ↗</a
+            >
+          </article>
+          <article>
+            <span class="eyebrow">Commerce engineering</span>
+            <h3>Blue Orchard</h3>
+            <p>
+              A Next.js storefront with Supabase, a persistent cart, Stripe
+              Checkout and server-side payment confirmation.
+            </p>
+            <a
+              href="https://github.com/Simonn777/Simonn777/blob/main/docs/applications.md#blue-orchard"
+              >Engineering summary ↗</a
+            >
+          </article>
+        </div>
+      </section>
+      <section class="contact wrap" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">Open to learning, building &amp; collaborating</p>
+          <h2 id="contact-title">Let’s compare notes.</h2>
+        </div>
+        <a
+          class="button"
+          href="https://www.linkedin.com/in/simon-xie-2a03343b8/"
+          >Connect on LinkedIn <span aria-hidden="true">↗</span></a
+        >
+      </section>
+    </main>
+    <footer class="wrap">
+      <span>Wumou Xie <span class="quiet">/ Tufts · May 2029</span></span>
+      <div>
+        <a href="https://github.com/Simonn777">GitHub</a
+        ><a href="https://github.com/Simonn777/Simonn777/tree/main/site"
+          >Site source</a
+        ><a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

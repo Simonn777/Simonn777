@@ -2,48 +2,60 @@
 
 **Tufts University · Expected May 2029**
 
-ML experiments, systems programming, and software people can use.
+Machine-learning experiments, C++/Python systems, and useful student software.
 
-I build reproducible machine-learning experiments and full-stack applications.
-My interests connect efficient ML, the software/hardware boundary, and
-accessible technology.
+I’m interested in how models, algorithms and real applications fit together.
+My work spans an NSF-funded research experience, nonprofit team development,
+and an open systems project with reproducible measurements.
 
-## Start here: VectorTile
+**[Portfolio →](https://simonn777.github.io/Simonn777/)** ·
+[Interactive demo](https://simonn777.github.io/VectorTile/) ·
+[LinkedIn](https://www.linkedin.com/in/simon-xie-2a03343b8/)
 
-**Exact nearest-neighbor search without a full distance matrix.**
+## Three places to start
 
-A public C++17 / Python systems lab with a streaming max-heap engine, query-level
-parallelism, tiled NumPy and optional PyTorch backends. Includes independent
-correctness oracles, sanitizer checks, cross-platform CI, raw timing data and
-an interactive explanation of the algorithm.
+### 01 · VectorTile — systems you can inspect
 
-**[Try the interactive demo ↗](https://simonn777.github.io/VectorTile/)** ·
-[Read the implementation](https://github.com/Simonn777/VectorTile) ·
-[Inspect the measurements](https://github.com/Simonn777/VectorTile/blob/main/benchmarks/results/apple-m5-cpu.json)
+Exact nearest-neighbor search in **C++17 and Python**: query-level parallelism,
+bounded heaps, tiled NumPy kernels and deterministic ties. CPU implementations
+have independent correctness checks, Linux/macOS CI and published measurements.
 
-<a href="https://simonn777.github.io/VectorTile/"><img src="https://raw.githubusercontent.com/Simonn777/VectorTile/main/docs/benchmark.png" alt="VectorTile: measured CPU latency across exhaustive-search implementations and workloads" width="850"></a>
+[Try it](https://simonn777.github.io/VectorTile/) ·
+[Code and two-minute tour](https://github.com/Simonn777/VectorTile#explore-in-two-minutes) ·
+[Raw results](https://github.com/Simonn777/VectorTile/blob/main/benchmarks/results/apple-m5-cpu.json)
 
-The project separates measured CPU results from unvalidated GPU performance.
-Created in October 2026 with AI-assisted implementation and review;
-[development provenance](https://github.com/Simonn777/VectorTile/blob/main/docs/DEVELOPMENT.md).
+_Created October 2026 with substantial AI-assisted implementation and review.
+[Contribution scope](https://github.com/Simonn777/VectorTile/blob/main/docs/DEVELOPMENT.md).
+CUDA hardware validation is pending._
 
-## Selected work
+### 02 · PolyTSL — controlled ML experiments
 
-| Project | My work | Public evidence |
-| --- | --- | --- |
-| **PolyTSL** · research | A 592,768-parameter adapter connecting frozen Text+ChemT5 and MolGPT models; controlled evaluation across 89 graph-disjoint targets and five seeds. | [Methods and scope](docs/polytsl.md). Research source/data remain private pending release review. |
-| **Tufts Review** · student software | Co-built an independent campus guide; implemented department filters and pagination, and checked listings against university sources. | [Live guide](https://tuftsreview.org) · [Project context](docs/applications.md#tufts-review) |
-| **Blue Orchard** · commerce | Next.js/TypeScript storefront, Supabase catalog, persistent cart, Stripe Checkout, verified payment webhooks and order workflows. | [Live storefront](https://blue-orchard.net) · [Engineering summary](docs/applications.md#blue-orchard) |
-| **JumboCode / LexShareWare** · team engineering | Inventory management, authentication and database work for a dishware-lending application serving Lexington Zero Waste. | [Contribution context](docs/applications.md#jumbocode--lexshareware) |
+During my **Graph Learning and Network Analysis REU**, I developed a
+593K-parameter adapter between frozen Text+ChemT5 and MolGPT models, curated
+13,020 text–structure pairs and evaluated text conditioning across 89
+graph-disjoint targets and five seeds. First-author manuscript draft.
 
-## How I approach a project
+[Approach, baselines and findings](docs/polytsl.md) ·
+[Visual overview](https://simonn777.github.io/Simonn777/#polytsl)
 
-- Make the behavior explicit: input contracts, failure modes, and numerical limits.
-- Keep evidence inspectable: baselines, ablations, tests and reproducible commands.
-- Build around real users: student communities, nonprofit partners and accessible interfaces.
+### 03 · Tufts Review — software for a campus community
 
-**Tools used across my work:** Python, NumPy, PyTorch, TypeScript, React,
-Next.js, PostgreSQL, Supabase, Prisma, Git; C++ through current systems work.
+Co-built a **React/Next.js and Supabase** campus guide. My contributions include
+department filters, pagination, and checking listings against university sources.
 
-Project descriptions distinguish research, team contributions and independent
-development. Private repositories are not presented as publicly reviewable source.
+[Visit the guide](https://tuftsreview.org) ·
+[Contribution context](docs/applications.md#tufts-review)
+
+## Working with people
+
+- **JumboCode / LexShareWare:** inventory management, authentication and database
+  work on a team application built for Lexington Zero Waste.
+  [Team contribution](docs/applications.md#jumbocode--lexshareware)
+- **Blue Orchard:** a Next.js storefront with a Supabase catalog, persistent cart,
+  Stripe Checkout and server-side payment handling.
+  [Engineering summary](docs/applications.md#blue-orchard)
+
+Research and team summaries describe my role; private source and datasets are
+not presented as public code. I’m currently exploring efficient ML and the
+software/hardware boundary, with an emphasis on experiments I can explain and
+results others can check.
