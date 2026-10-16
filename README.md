@@ -1,80 +1,62 @@
-# Wumou (Simon) Xie
+## Hi, I'm Simon!
 
-**Tufts University · Expected May 2029**
+I'm **Wumou (Simon) Xie**, a Tufts undergraduate expecting to graduate in May 2029. I work on machine-learning experiments and web applications, and I'm interested in the software/hardware boundary.
 
-I’m an undergraduate working on machine-learning research and web applications.
-My projects include text-conditioned polymer generation, a campus guide, a
-textile storefront, and a public C++/Python vector-search lab.
+This past summer, I developed [**PolyTSL**](https://simonn777.github.io/Simonn777/projects/polytsl.html) during an NSF-funded REU: a 593K-parameter adapter connecting a frozen text encoder to a frozen polymer generator. I evaluated text conditioning on 89 held-out targets across five seeds, with MLP and retrieval baselines. The [research notes](docs/polytsl.md) cover the findings and limitations; the first-author manuscript is a draft.
 
-[**Portfolio**](https://simonn777.github.io/Simonn777/) ·
-[LinkedIn](https://www.linkedin.com/in/simon-xie-2a03343b8/)
+I co-founded [**Tufts Review**](https://tuftsreview.org), a campus guide where I worked on department filters, pagination, and source verification. I also built [**Blue Orchard**](https://simonn777.github.io/Simonn777/projects/blue-orchard.html), a storefront for Yunnan handmade textiles with a persistent cart and Stripe Checkout.
 
-## Selected projects
+Through **JumboCode**, I've contributed inventory, authentication, and database features to [LexShareWare](docs/applications.md#jumbocode--lexshareware), a team-built dishware-lending app for Lexington Zero Waste.
 
-### PolyTSL · machine-learning research
+More project notes and working demos are on [**my website**](https://simonn777.github.io/Simonn777/). You can also find me on [**LinkedIn**](https://www.linkedin.com/in/simon-xie-2a03343b8/).
 
-During an NSF-funded REU, I developed a **593K-parameter adapter** between frozen
-Text+ChemT5 and MolGPT models. The study includes 13,020 text–structure pairs,
-89 graph-disjoint evaluation targets, five seeds, and MLP/retrieval baselines.
-First-author manuscript draft. The results support text-sensitive conditioning,
-not a significant advantage over the MLP or exact structural recovery.
+---
 
-[Research notes](https://simonn777.github.io/Simonn777/projects/polytsl.html) ·
-[Methods and limitations](docs/polytsl.md)
+### Languages & tools
 
-### VectorTile · C++17 / Python
+Tools used across my research, applications, and public experiments.
 
-Exact top-k search using **bounded heaps, tiled NumPy, and query-level
-parallelism**. Includes deterministic tie handling, correctness tests,
-Linux/macOS CI, and raw CPU benchmark results.
+<table>
+  <tr>
+    <th align="center">Languages</th>
+    <th align="center">Web</th>
+    <th align="center">Data</th>
+    <th align="center">ML & numerical</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/profile/python.svg" width="26" height="26" alt="Python" title="Python">&nbsp;
+      <img src="assets/profile/cplusplus.svg" width="26" height="26" alt="C++" title="C++">&nbsp;
+      <img src="assets/profile/typescript.svg" width="26" height="26" alt="TypeScript" title="TypeScript">&nbsp;
+      <img src="assets/profile/javascript.svg" width="26" height="26" alt="JavaScript" title="JavaScript">
+      <br>
+      <sub>Python · C++ · TypeScript · JavaScript</sub>
+    </td>
+    <td align="center">
+      <img src="assets/profile/react.svg" width="26" height="26" alt="React" title="React">&nbsp;
+      <img src="assets/profile/nextjs.svg" width="26" height="26" alt="Next.js" title="Next.js">
+      <br>
+      <sub>React · Next.js</sub>
+    </td>
+    <td align="center">
+      <img src="assets/profile/postgresql.svg" width="26" height="26" alt="PostgreSQL" title="PostgreSQL">&nbsp;
+      <img src="assets/profile/supabase.svg" width="26" height="26" alt="Supabase" title="Supabase">&nbsp;
+      <img src="assets/profile/prisma.svg" width="26" height="26" alt="Prisma" title="Prisma">
+      <br>
+      <sub>PostgreSQL · Supabase · Prisma</sub>
+    </td>
+    <td align="center">
+      <img src="assets/profile/pytorch.svg" width="26" height="26" alt="PyTorch" title="PyTorch">&nbsp;
+      <img src="assets/profile/numpy.svg" width="26" height="26" alt="NumPy" title="NumPy">
+      <br>
+      <sub>PyTorch · NumPy</sub>
+    </td>
+  </tr>
+</table>
 
-[Interactive demo](https://simonn777.github.io/VectorTile/) ·
-[Source and quick start](https://github.com/Simonn777/VectorTile) ·
-[Raw measurements](https://github.com/Simonn777/VectorTile/blob/main/benchmarks/results/apple-m5-cpu.json)
+### Public experiments
 
-_Created October 2026 with substantial AI-assisted implementation and review.
-[Development provenance](https://github.com/Simonn777/VectorTile/blob/main/docs/DEVELOPMENT.md).
-CUDA hardware validation is pending._
+- [**VectorTile**](https://github.com/Simonn777/VectorTile): exact top-k search in C++ and Python, with correctness tests and CPU benchmarks. [Try the demo](https://simonn777.github.io/VectorTile/).
+- [**Graph Splits**](https://simonn777.github.io/Simonn777/labs/graph-splits/) and [**Payment Event Lab**](https://simonn777.github.io/Simonn777/labs/order-events/): interactive explanations of evaluation leakage and event retries.
 
-### Tufts Review · campus software
-
-Co-built a **React/Next.js and Supabase** campus guide. My contributions include
-department filters, pagination, and checking listings against university sources.
-
-[Live site](https://tuftsreview.org) ·
-[Project notes and screenshots](https://simonn777.github.io/Simonn777/projects/tufts-review.html)
-
-### Blue Orchard · commerce engineering
-
-Built a storefront for Yunnan handmade textiles with a Supabase catalog,
-persistent cart, and Stripe Checkout. The private implementation includes
-server-side pricing, signed payment events, order records, and inventory
-reservation/release functions.
-
-[Engineering notes](https://simonn777.github.io/Simonn777/projects/blue-orchard.html) ·
-[Public storefront](https://blue-orchard.net)
-
-## Two small experiments
-
-| Try it                                                                     | What to inspect                                                             | Source                                    |
-| -------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------- |
-| [Graph splits](https://simonn777.github.io/Simonn777/labs/graph-splits/)   | How record-level splitting can put the same graph in training and test data | [Implementation](site/labs/graph-splits/) |
-| [Payment events](https://simonn777.github.io/Simonn777/labs/order-events/) | Duplicate deliveries, event ordering, and a retryable fulfillment outbox    | [Implementation](site/labs/order-events/) |
-
-These are new, AI-assisted educational demos using synthetic data. They do not
-reproduce the private research or commerce systems. Run their tests locally:
-
-```sh
-node --test tests/*.test.mjs
-node scripts/check-links.mjs
-```
-
-## At Tufts
-
-Through **JumboCode**, I contribute inventory, authentication, and database
-functionality to LexShareWare, a dishware-lending app for Lexington Zero Waste.
-[Team contribution context](docs/applications.md#jumbocode--lexshareware).
-
-Research and application source remains private where indicated. Public demos,
-project notes, and role descriptions distinguish shared work from independent
-and AI-assisted implementation.
+These October 2026 experiments were built with substantial AI assistance; the two browser labs use synthetic data. [Contribution notes](docs/portfolio.md) explain their scope. Research and application source remains private where indicated.
