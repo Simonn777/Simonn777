@@ -56,6 +56,7 @@ Tools used across my research, applications, and public experiments.
 
 ### Public experiments
 
+- [**Embodied Vision Reliability**](https://github.com/Simonn777/embodied-vision-reliability): an open, AI-assisted research log on when to reject unreliable visual position estimates. The first stage uses synthetic diagnostics; real-video validation is planned.
 - [**VectorTile**](https://github.com/Simonn777/VectorTile): exact top-k search in C++ and Python, with correctness tests and CPU benchmarks. [Try the demo](https://simonn777.github.io/VectorTile/).
 - [**Graph Splits**](https://simonn777.github.io/Simonn777/labs/graph-splits/) and [**Payment Event Lab**](https://simonn777.github.io/Simonn777/labs/order-events/): interactive explanations of evaluation leakage and event retries.
 
